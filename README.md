@@ -6,7 +6,7 @@ Python script to format price with a separation by thousands with a space.
 Python 3.5 required.
 # Usage examples
 ## Usage with terminal
-###Input
+### Input
 ```bash
 python format_price.py 10450.551
 ``` 
