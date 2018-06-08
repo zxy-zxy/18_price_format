@@ -1,41 +1,50 @@
 import argparse
 import sys
-from decimal import Decimal, InvalidOperation
+from decimal import Decimal, InvalidOperation, ROUND_HALF_EVEN
 
 
 def create_parser():
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        'number',
-        help='Number to format'
+        'price',
+        help='Price to format.'
     )
 
     return parser
 
 
 def format_price(price):
+    if type(price) not in [int, str, float, Decimal]:
+        return None
+
     try:
-        price_in_decimal_format = Decimal(price)
+        price_in_decimal_format = Decimal(price).quantize(
+            Decimal('.01'),
+            rounding=ROUND_HALF_EVEN
+        )
     except InvalidOperation:
-        raise ValueError
+        return None
 
-    if price_in_decimal_format <= 0:
-        raise ValueError
+    if int(price_in_decimal_format) == price_in_decimal_format:
+        format_specs = ',.0f'
+    else:
+        format_specs = ',.2f'
 
-    return str.replace(
-        '{:,.2f}'.format(price_in_decimal_format),
-        ',',
-        ' '
+    formatted_price = format(
+        price_in_decimal_format,
+        format_specs
     )
+
+    formatted_price = str.replace(formatted_price, ',', ' ')
+    return formatted_price
 
 
 if __name__ == '__main__':
     args_parser = create_parser()
     args = args_parser.parse_args()
 
-    try:
-        formatted_price = format_price(args.number)
-    except ValueError:
+    formatted_price = format_price(args.price)
+    if formatted_price is None:
         sys.exit('Invalid input.')
 
     print(formatted_price)
