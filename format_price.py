@@ -1,6 +1,6 @@
 import argparse
 import sys
-from decimal import *
+from decimal import Decimal, InvalidOperation
 
 
 def create_parser():
