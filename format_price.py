@@ -14,7 +14,10 @@ def create_parser():
 
 
 def format_price(price):
-    if type(price) not in [int, str, float, Decimal]:
+    can_convert_to_number = max(
+        map(lambda x: isinstance(price, x), [int, str, float, Decimal])
+    )
+    if not can_convert_to_number:
         return None
 
     try:
