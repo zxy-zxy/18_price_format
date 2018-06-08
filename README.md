@@ -2,23 +2,23 @@
 
 Python script to format price with a separation by thousands with a space.
 
-#Requirements
+# Requirements
 Python 3.5 required.
-#Usage examples
-##Usage with terminal
+# Usage examples
+## Usage with terminal
 ###Input
 ```bash
 python format_price.py 10450.551
 ``` 
-###Output
+### Output
 ```bash
 10 450.55
 ```
-##Usage in your own python project 
+## Usage in your own python project 
 ```python
 from format_price import format_price
 ```
-#Tests
+# Tests
 To run and ensure tests are working 
 ```bash
 python -m unittest tests.py
