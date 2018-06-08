@@ -36,9 +36,8 @@ def format_price(price):
     formatted_price = format(
         price_in_decimal_format,
         format_specs
-    )
+    ).replace(',', ' ')
 
-    formatted_price = str.replace(formatted_price, ',', ' ')
     return formatted_price
 
 
