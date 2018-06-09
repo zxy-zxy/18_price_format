@@ -14,10 +14,9 @@ def create_parser():
 
 
 def format_price(price):
-    can_convert_to_number = max(
-        map(lambda x: isinstance(price, x), [int, str, float, Decimal])
-    )
-    if not can_convert_to_number:
+    try:
+        float(price)
+    except (TypeError, ValueError):
         return None
 
     try:

@@ -33,3 +33,9 @@ class FormatPriceTest(unittest.TestCase):
 
     def test_dict_equals_to_none(self):
         self.assertIsNone(None, format_price({'key': 'value'}))
+
+    def test_boolean_true_input_equals_to_one(self):
+        self.assertEqual('1', format_price(True))
+
+    def test_boolean_false_input_equals_to_zero(self):
+        self.assertEqual('0', format_price(False))
